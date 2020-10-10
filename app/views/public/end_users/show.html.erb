@@ -1,0 +1,60 @@
+<section class="end_users_mypage">
+<div class="container">
+  <div class="row">
+  	<p class="col-xs-offset-3">
+  	マイページ</p>
+  <br>
+  <div class="col-xs-offset-2">
+  	<p>登録情報　
+  	<%= link_to "編集する	", edit_end_users_path, class: "btn btn-primary" %>
+  	<%= link_to "パスワードを変更する", items_path, class: "btn btn-primary" %></p>
+  </div>
+</div>
+  <br>
+  	<div class="col-xs-offset-2 col-xs-8">
+         <table border="1" width="100%" style="table-layout: fixed;">
+           <tr>
+           	<th>氏名</th>
+           	<td><%= @end_user.first_name %> <%= @end_user.last_name %></td>
+           </tr>
+           <tr>
+           	<th>カナ</th>
+           	<td><%= @end_user.first_name_kana %> <%= @end_user.last_name_kana %></td>
+           </tr>
+           <tr>
+           	<th>郵便番号</th>
+           	<td><%= @end_user.postal_code %></td>
+           </tr>
+           <tr>
+           	<th>住所</th>
+           	<td><%= @end_user.address %></td>
+           </tr>
+           <tr>
+           	<th>電話番号</th>
+           	<td><%= @end_user.phone_number %></td>
+           </tr>
+           <tr>
+           	<th>メールアドレス</th>
+           	<td><%= @end_user.email %></td>
+           </tr>
+        </table>
+     </div>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <br>
+     <div class="col-xs-offset-2">
+     	<p>配送先　
+     	<%= link_to "一覧を見る", items_path, class: "btn btn-primary" %></p>
+     </div>
+     <br>
+     <div class="col-xs-offset-2">
+     	<p>注文先　
+     	<%= link_to "一覧を見る", items_path, class: "btn btn-primary" %></p>
+     </div>
+    </div>
+
+  </section>

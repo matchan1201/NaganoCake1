@@ -1,0 +1,21 @@
+<section class="confirm">
+  <div class="container">
+  	<div class="row">
+  	<div class="text-center">
+  	  	<strong style="font-size:20px;">本当に退会しますか？</strong>>
+  	  <br>
+  	  <br>
+  	    <p style="font-size:20px;">退会すると、会員登録情報や<br>
+           これまでの購入履歴が閲覧できなくなります。<br>
+           退会する場合は、「退会する」をクリックしてください。
+        </p>
+       </div>
+       <div class="col-xs-offset-4">
+         <%= link_to "退会しない", end_users_path, class: "btn btn-primary col-xs-2" %>
+         <%= link_to "退会する" , withdrawal_path, method: :patch, data: { confirm: 'Are you sure?'}, class: "btn btn-danger col-xs-offset-2 col-xs-2" %>
+       </div>
+   </div>
+</div>
+</section>
+
+<br>

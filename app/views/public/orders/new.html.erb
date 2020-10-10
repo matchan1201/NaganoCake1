@@ -1,0 +1,65 @@
+<section class="order">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-offset-2">
+  	    <p>注文情報入力</p>
+      </div>
+    </div>
+    <div class="row">
+      <%= form_with model: @order,url: cart_item_information_path, method: :post,local: true do |f| %>
+      <div class="field">
+      <strong style="display:block;">支払い方法</strong>
+      <div class="field" style="margin-left:50px;">
+        <%= f.radio_button :payment_methods, :credit,{checked: true} %>クレジットカード
+      </div>
+      <div class="field" style="margin-left:50px;">
+        <%= f.radio_button :payment_methods, :bank,{} %>銀行振込
+      </div>
+      <br>
+      <strong style="display: block;">お届け先</strong>
+      <div class="field"style="margin-left:50px;" >
+        <%= f.radio_button :address_option,0 %>
+        <%= f.label :address, "ご自身の住所" %>
+        <br>
+        <%= @end_user.postal_code %><%= @end_user.address %><br>
+        <%= @end_user.first_name %><%= @end_user.last_name %>
+      </div>
+      <br>
+      <% if current_end_user.addresses.present? %>
+      <div class="field" style="margin-left:50px;">
+        <%= f.radio_button :address_option,1 %>
+        <%= f.label :address, "登録済み住所から選択" %>
+        <br>
+        <%= f.collection_select :adress, Address.where(end_user_id: @end_user.id), :id, :postal_address_addressee, {},{ class: "col-xs-10" } %>
+                              <!-- 追加したいカラム名、変数を指定、選択した場合個々の値が送られる:idだとidが送られる、表示したいカラム名、今はAddressモデルのカラムが表示（モデルで定義） -->
+      </div>
+      <% end %>
+      <br>
+      <br>
+      <div class="field" style="margin-left:50px;">
+        <%= f.radio_button :address_option,2 %>
+        <%= f.label :address, "新しい登録先" %>
+        <br>
+        <div>
+          <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+          <p style="display: inline; margin-left: 60px;"><%= f.text_field :postal_code %></p>
+        </div>
+        <br>
+        <div>
+          <%= f.label :address, "住所",class: "pull-left" %>
+           <%= f.text_field :address,class: "col-xs-offset-2 col-xs-5"  %>
+        </div>
+        <br>
+        <br>
+        <div>
+          <%= f.label :addressee, "宛名",class: "pull-left" %>
+           <%= f.text_field :addressee,class: "col-xs-offset-2" %>
+        </div>
+        <br>
+      </div class="actions">
+      <%= f.submit "確認画面に進む",class: "col-xs-offset-4 col-xs-3 btn btn-primary"%>
+      <% end %>
+  </div>
+    </div>
+  </div>
+</section>

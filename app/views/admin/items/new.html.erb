@@ -1,0 +1,47 @@
+<section class="new-item">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-offset-2" style="margin-bottom: 100px;">
+        <p>商品新規登録</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <%= form_with model: @item, url: admin_items_path do |f| %>
+      <div class="field col-xs-4">
+        <%= f.label :image, "ここに何を入れたらいいかわからない" %>#jsを使って画像をプレビューさせるっぽい
+        <%= f.attachment_field :image %>
+      </div>
+
+      <div class="field col-xs-8">
+        <%= f.label :name, "商品名　　" %>
+        <%= f.text_field :name %>
+        <br>
+        <br>
+        <%= f.label :description, "商品説明　" %>
+        <%= f.text_area :description, size: "23x5" %>
+        <br>
+        <br>
+        <%= f.label :genre_id, "ジャンル　" %>
+        <%= f.collection_select :genre_id, Genre.where(is_valid: 'true'), :id, :name, prompt: "　　--選択してください--" %>
+        　　　　　　　　　　　　　
+        <!--カラム名、　どこからデータを持ってくるか　　value値？？　どのカラムの情報を持ってくるか, value値だとジャンルidを持ってきて渡している -->
+        <br>
+        <br>
+        <%= f.label :tax_excluded_price, "税抜き価格" %>
+        <%= f.text_field :tax_excluded_price %>円
+        <br>
+        <br>
+        <%= f.label :is_on_sale, "販売ステータス　" %>
+        <%= f.radio_button :is_on_sale, :true %>
+        <%= f.label :is_on_sale, "販売中" %>
+        <%= f.radio_button :is_on_sale, :false %>
+        <%= f.label :is_on_sale, "販売停止中" %>
+      </div>
+      <div class="action col-xs-offset-8">
+        <%= f.submit "新規登録", class: "btn btn-primary col-xs-4" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</section>

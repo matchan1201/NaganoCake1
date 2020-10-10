@@ -1,0 +1,48 @@
+<section class="genres">
+<div class="container">
+  <div class="row">
+  <div class="col-xs-offset-2">
+  	<p>ジャンル一覧・追加</p>
+  </div>
+  <br>
+      <div class="col-xs-offset-2">
+        <div class="form-body">
+          <%= form_with model: @genre, url: admin_genres_path do |f| %>
+          <div class="field">
+              <%= f.label :name, "ジャンル　　" %>
+              <%= f.text_field :name %>
+              <%= f.radio_button :is_valid, :true %>
+              <%= f.label :is_valid, "有効　" %>
+              <%= f.radio_button :is_valid, :false %>
+              <%= f.label :is_valid, "無効　" %>
+              <%= f.submit "追加", class: "btn btn-primary" %>
+          </div>
+          <% end %>
+        </div>
+    </div>
+    <table class='table table-hover col-xs-offset-2' style=" width: 50%">
+      <thead>
+        <tr>
+          <th style="padding: 0;">ジャンル</th>
+          <th class="col-xs-5">状態</th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @genres.each do |genre| %>
+          <tr>
+            <td><%= genre.name %></td>
+            <% if genre.is_valid == true %>
+            <td><%= "有効" %></td>
+            <% else %>
+            <td><%= "無効" %></td>
+            <% end %>
+            <td><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+  </table>
+  </div>
+</div>
+</section>

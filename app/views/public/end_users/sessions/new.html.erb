@@ -1,0 +1,46 @@
+<section class="login-form">
+<div class="row">
+    <div class="form-header">
+      <p class="form-header-title col-xs-offset-3">会員の方はこちらからログイン</p>
+    </div>
+    <div class="row">
+      <div class="col-xs-offset-4">
+       <div class="form-body">
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+              <div class="field">
+                <%= f.label :email, "メールアドレス", class: "col-xs-2" %>
+                <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-xs-4" %>
+              </div>
+              <br>
+              <br>
+
+              <div class="field">
+                <%= f.label :password, "パスワード", class: "col-xs-2" %>
+                <%= f.password_field :password, autocomplete: "current-password", class: "col-xs-4" %>
+              </div>
+              <br>
+              <br>
+              <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                <%= link_to "=>パスワードを忘れた方はこちら", new_password_path(resource_name), class: "col-xs-offset-4" %><br />
+              <% end %>
+             <!--  <% if devise_mapping.rememberable? %>
+                <div class="field">
+                  <%= f.check_box :remember_me %>
+                  <%= f.label :remember_me %>
+                </div>
+              <% end %> -->
+
+              <div class="actions">
+                <%= f.submit "ログイン", class: "btn btn-primary col-xs-offset-2 col-xs-2" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <br>
+        <div class="form-header">
+          <p class="form-header-title col-xs-offset-3">  登録がお済ではない方</p>
+        </div>
+        <span><%= link_to "こちら", new_end_user_registration_path, class: "col-xs-offset-4" %>  から新規登録を行ってください</span>
+      </div>
+  </section>

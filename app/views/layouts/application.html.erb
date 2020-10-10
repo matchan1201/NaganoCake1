@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NaganoCake</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+          <% if end_user_signed_in? %>
+          <nav class="nav navbar-nav navbar-left">
+            <li>
+              <%=link_to "LOGO", root_path %>
+            </li>
+          </nav>
+          <nav>
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                <p style="color:white; margin-top: 15px; margin-right: 300px;">ようこそ<%= current_end_user.first_name %>さん!</p>
+              </li>
+              <li>
+               <%= link_to "マイページ", end_users_path %>
+              </li>
+              <li>
+                <%= link_to "商品一覧",items_path %>
+              </li>
+              <li>
+                <%= link_to "カート", cart_items_path %>
+              </li>
+              <li>
+                <%= link_to "ログアウト", destroy_end_user_session_path, method: :delete %>
+              </li>
+              </ul>
+           </nav>
+           <% elsif admin_signed_in? %>
+             <nav class="nav navbar-nav navbar-left">
+              <li>
+                <%=link_to "LOGO", admin_top_path %>
+              </li>
+             </nav>
+             <nav>
+              <ul class="nav navbar-nav navbar-right">
+              <li>
+                <%= link_to "商品一覧", admin_items_path %>
+              </li>
+              <li>
+                <%= link_to "会員一覧", admin_end_users_path  %>
+              </li>
+              <li>
+                <%= link_to "注文履歴一覧", admin_orders_path %>
+              </li>
+              <li>
+                <%= link_to "ジャンル一覧", admin_genres_path %>
+              </li>
+              <li>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              </li>
+              <br>
+              <div class="pull-right">
+              <%= form_with url: admin_items_path, method: :get, local: true do |f| %>
+                <%= f.text_field :search %>
+                <%= f.submit 'Search', name: nil %>
+              <% end %>
+            </div>
+            </ul>
+          </nav>
+           <% else %>
+             <nav class="nav navbar-nav navbar-left">
+              <li>
+                <%=link_to "LOGO", root_path %>
+              </li>
+            </nav>
+            <nav>
+              <ul class="nav navbar-nav navbar-right">
+              <li>
+                <%= link_to "商品一覧", items_path %>
+              </li>
+              <li>
+                <%= link_to "新規登録", new_end_user_registration_path  %>
+              </li>
+              <li>
+                <%= link_to "ログイン", new_end_user_session_path %>
+              </li>
+            </ul>
+          <% end %>
+        </nav>
+      </div>
+    </header>
+        <br>
+        <br>
+    <%= yield %>
+  </body>
+</html>

@@ -1,0 +1,25 @@
+<section class="genres-edit">
+<div class="container">
+  <div class="row">
+  <div class="col-xs-offset-2">
+  	<p>ジャンル編集</p>
+  </div>
+  <br>
+      <div class="col-xs-offset-2">
+        <div class="form-body">
+          <%= form_with model: @genre, url: admin_genre_path do |f| %>
+          <div class="field">
+              <%= f.label :name, "ジャンル　　" %>
+              <%= f.text_field :name %>
+              <%= f.radio_button :is_valid, :true %>
+              <%= f.label :is_valid, "有効　" %>
+              <%= f.radio_button :is_valid, :false %>
+              <%= f.label :is_valid, "無効　" %>
+              <%= f.submit "追加", class: "btn btn-primary" %>
+          </div>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+</section>
